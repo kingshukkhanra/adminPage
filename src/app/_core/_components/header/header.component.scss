@@ -1,0 +1,48 @@
+.l-header-wrapper{
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 10.9rem;
+    width: 100%;
+    font-size: 1.4rem;
+    color: #444546;
+    background: #fff;
+    z-index: 2000;
+    height: auto;
+}
+
+// .l-header{
+//     min-width: 76.8rem;
+//     max-width: 136.6rem;
+//     position: sticky;
+//     width: auto;
+//     margin: 0 auto;
+//     overflow: auto;
+//     overflow: visible;
+// }
+// .
+/////////////////////////////////////////////////////////
+.m-logo-and-search{
+    // height: 8.3rem;
+    //position: relative;
+    height: 5.3rem;
+    position: sticky;
+    display: flex;
+    background: #fff;
+}
+.m-logo {
+    flex-grow: 0;
+    padding-top: 0;
+    margin-left: 2rem;
+    width: 30.3rem;
+    margin-left: 1.7rem;
+    padding-top: 0.8rem;
+    flex-grow: 1;
+    width: 67%;
+}
+.m-logo .m-logo-img {
+    margin-left: 0;
+    max-width: 100%;
+    height: 64px;
+    //height: auto;
+}

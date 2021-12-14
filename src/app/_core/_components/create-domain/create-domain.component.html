@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <button class="nav-link" aria-current="page" class="font-weight-bold btn btn-md btn-outline-primary mr-3"
+        (click)="toggle('basic')">
+        Basic Settings
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" class="font-weight-bold btn btn-md btn-outline-primary" (click)="toggle('advance')">
+        Advance Settings
+      </button>
+    </li>
+  </ul>
+  <!-- ----------------------------------------------------------------  ------------------------------  -->
+  <div class="form-wrapper">
+    <form autocomplete="off">
+      <div  class="basic" *ngIf="setsetting=='basic'">
+        <div class="form-group">
+          <label for="id" class="font-weight-bold">ID<span>*</span></label>
+          <input type="text" name="id" class="form-control" required="true" placeholder="Enter your Domain Name" #id
+            formControlName="id">
+        </div>
+        <div class="form-group">
+          <label for="domain" class="font-weight-bold">Domain Name<span>*</span></label>
+          <input type="text" name="domain" class="form-control" required="true" placeholder="Enter your Domain Name"
+            #domain formControlName="domain">
+        </div>
+        <div class="form-group">
+          <label for="knowledgeBaseId" class="font-weight-bold">Knowledge Base Id<span>*</span></label>
+          <input type="text" name="knowledgeBaseId" class="form-control" required="true"
+            placeholder="Enter knowledge Base Id" #knowledgeBaseId formControlName="knowledgeBaseId">
+        </div>
+        <div class="form-group">
+          <label for="endpointKey" class="font-weight-bold">Endpoint Key<span>*</span></label>
+          <input type="text" name="endpointKey" class="form-control" required="true" placeholder="Enter Endpoint Key"
+            #endpointKey formControlName="endpointKey">
+        </div>
+        <div class="form-group">
+          <label for="host" class="font-weight-bold">Host<span>*</span></label>
+          <input type="text" name="host" class="form-control" required="true" placeholder="Enter Host" #host
+            formControlName="host">
+        </div>
+        <div class="form-group">
+          <label for="maxresponses" class="font-weight-bold">Number Of Responses</label>
+          <input type="number" name="maxresponses" class="form-control" required="true"
+            placeholder="Enter total response" #maxresponses formControlName="maxresponses">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-sm btn-outline-success mr-3" (click)="store(domain)">Submit</button>
+          <button class="btn btn-sm btn-outline-warning">Reset</button>
+        </div>
+      </div> <!-- end basic-->
+    </form>
+  </div>
+
+</div>

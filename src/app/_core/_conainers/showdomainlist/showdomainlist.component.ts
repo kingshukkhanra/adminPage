@@ -1,7 +1,7 @@
 import { SendvalueService } from './../../_services/sendvalue.service';
 import { AdmindataService } from './../../_services/admindata.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { createDomainModel } from 'src/app/_core/_models/create-domain-model.model';
 import { Router } from '@angular/router';
 import { Options } from '@angular-slider/ngx-slider';
@@ -18,6 +18,7 @@ export class ShowdomainlistComponent implements OnInit {
   showDomains:boolean=true;
   showForm:boolean=false;
   formTabs = ['basic','advance','category']
+  userForm:FormGroup;
   constructor(private adminSvc:AdmindataService,private sendSvc:SendvalueService,private router:Router)  { }
    
 
@@ -26,7 +27,7 @@ export class ShowdomainlistComponent implements OnInit {
      this.bindData();
   }
   ///////////////////////////////////////////////////
-  value: number = 0.0;
+  value: number = 0.5;
   options: Options = {
     showTicksValues: true,
     stepsArray: [
@@ -62,7 +63,18 @@ export class ShowdomainlistComponent implements OnInit {
   }
 
   bindData(){
-    
+    this.userForm = new FormGroup({
+      domainName : new FormControl('Web',[Validators.required]),
+      domainLabel : new FormControl('Web Development'),
+      knowledgebaseId : new FormControl('knowledgeBaseId10'),
+      knowledgeBaseEndpointKey : new FormControl('knowLedgeBaseEndpointKey10'),
+      host : new FormControl('host12345'),
+      primaryEmailContact : new FormControl('kingshukkhanra22@gmail.com'),
+      secondaryEmailContact : new FormControl('kingshukkhanra22@gmail.com'),
+      helpText : new FormControl("please Aknowledge Me"),
+      maxResponsesInSearch : new FormControl(1),
+      lookbackTimeForLog : new FormControl(6)
+    });
   }
 
   showForms(){

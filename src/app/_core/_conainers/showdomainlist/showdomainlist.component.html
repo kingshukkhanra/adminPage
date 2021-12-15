@@ -1,7 +1,7 @@
     <div *ngIf="showDomains" class="mb-2">
       <div class="domain-wrapper" *ngFor="let domain of data; let i= index;">
-        <div class="domain text-center "  (click)="onDomainClick(domain.domainName)" [ngClass]="{activeDomain:domain.domainName == selectedDomainName}"> 
-           {{domain.domainName}}  
+        <div class="domain"  (click)="onDomainClick(domain.domainName)" [ngClass]="{activeDomain:domain.domainName == selectedDomainName}"> 
+          {{domain.domainName}}  
         </div>
       </div>
 
@@ -33,32 +33,46 @@
     </ul>
  
     <div class="form-wrapper">
-      <form autocomplete="off">
+      <form autocomplete="off" [formGroup]="userForm">
 
         <div class="basic" *ngIf="setsetting=='basic'">
           <div class="form-group">
             <label for="domain" class="font-weight-bold">Domain Name<span>*</span></label>
             <input type="text" name="domain" class="form-control" required="true" placeholder="Enter Domain Name"
-              #domainName>
-          </div>
+              #domainName formControlName="domainName" [class.is-invalid]="userForm.get('domainName').invalid && userForm.get('domainName').touched">
+              <section *ngIf="userForm.get('domainName').invalid && userForm.get('domainName').touched">
+                <small class="text-danger" *ngIf="userForm.get('domainName').errors?.required">Domain Name is Required</small>
+                </section>
+            </div>
 
           <div class="form-group">
             <label for="domainlevel" class="font-weight-bold">Domain Label<span>*</span></label>
             <input type="text" name="domainlevel" class="form-control" required="true" placeholder="Enter Domain Level"
-              #domainLabel>
-          </div>
+              #domainLabel formControlName="domainLabel" [class.is-invalid]="userForm.get('domainLabel').invalid && userForm.get('domainLabel').touched">
+              <section *ngIf="userForm.get('domainLabel').invalid && userForm.get('domainLabel').touched">
+                <small class="text-danger" *ngIf="userForm.get('domainLabel').errors?.required">Domain Label is Required</small>
+              </section>
+            </div>
 
           <div class="form-group">
             <label for="knowledgeBaseId" class="font-weight-bold">KnowledgeBase Id<span>*</span></label>
             <input type="text" name="knowledgeBaseId" class="form-control" required="true"
-              placeholder="Enter knowledge Base Id" #knowledgeBaseId>
+              placeholder="Enter knowledge Base Id" #knowledgeBaseId formControlName="knowledgebaseId"
+              [class.is-invalid]="userForm.get('knowledgebaseId').invalid && userForm.get('knowledgebaseId').touched">
+              <section *ngIf="userForm.get('knowledgebaseId').invalid && userForm.get('knowledgebaseId').touched">
+                <small class="text-danger" *ngIf="userForm.get('knowledgebaseId').errors?.required">knowledgebase Id is Required</small>
+              </section>
           </div>
 
           <div class="form-group">
             <label for="endpointKey" class="font-weight-bold">KnowledgeBase Endpoint Key<span>*</span></label>
             <input type="text" name="endpointKey" class="form-control" required="true" placeholder="Enter Endpoint Key"
-              #knowledgeBaseEndpointKey>
-          </div>
+              #knowledgeBaseEndpointKey formControlName="knowledgeBaseEndpointKey"
+              [class.is-invalid]="userForm.get('knowledgeBaseEndpointKey').invalid && userForm.get('knowledgeBaseEndpointKey').touched">
+              <section *ngIf="userForm.get('knowledgeBaseEndpointKey').invalid && userForm.get('knowledgeBaseEndpointKey').touched">
+                <small class="text-danger" *ngIf="userForm.get('knowledgeBaseEndpointKey').errors?.required">knowledge Base End Point Key is Required</small>
+              </section>
+            </div>
 
           <div class="form-group">
             <label for="confidencethracehold" class="font-weight-bold">Confidence Threshold<span>*</span></label>
@@ -69,40 +83,60 @@
 
           <div class="form-group">
             <label for="host" class="font-weight-bold">Host<span>*</span></label>
-            <input type="text" name="host" class="form-control" required="true" placeholder="Enter Host" #host>
+            <input type="text" name="host" class="form-control" required="true" placeholder="Enter Host" #host formControlName="host"
+            [class.is-invalid]="userForm.get('host').invalid && userForm.get('host').touched">
+            <section *ngIf="userForm.get('host').invalid && userForm.get('host').touched">
+              <small class="text-danger" *ngIf="userForm.get('host').errors?.required">Host is Required</small>
+            </section>
           </div>
 
           <div class="form-group">
             <label for="pcontract" class="font-weight-bold">Primary Email Contact<span>*</span></label>
             <input type="text" name="pcontract" class="form-control" required="true"
-              placeholder="Enter Primary Contract" #primaryEmailContact>
+              placeholder="Enter Primary Contract" #primaryEmailContact formControlName="primaryEmailContact"
+              [class.is-invalid]="userForm.get('primaryEmailContact').invalid && userForm.get('primaryEmailContact').touched">
+              <section *ngIf="userForm.get('primaryEmailContact').invalid && userForm.get('primaryEmailContact').touched">
+                <small class="text-danger" *ngIf="userForm.get('primaryEmailContact').errors?.required">Primary Email Contact is Required</small>
+              </section>
           </div>
 
           <div class="form-group">
             <label for="scontract" class="font-weight-bold">Secondary Email Contact<span>*</span></label>
             <input type="text" name="scontract" class="form-control" required="true"
-              placeholder="Enter Secondary Contract" #secondaryEmailContact>
+              placeholder="Enter Secondary Contract" #secondaryEmailContact formControlName="secondaryEmailContact"
+              [class.is-invalid]="userForm.get('secondaryEmailContact').invalid && userForm.get('secondaryEmailContact').touched">
+              <section *ngIf="userForm.get('secondaryEmailContact').invalid && userForm.get('secondaryEmailContact').touched">
+                <small class="text-danger" *ngIf="userForm.get('secondaryEmailContact').errors?.required">Secondary Email Contact is Required</small>
+              </section>
           </div>
 
           <div class="form-group">
             <label for="helpbox" class="font-weight-bold">Help Text<span>*</span></label>
             <textarea type="text" name="helpmsg" class="form-control" required="true" placeholder="write a help message"
-              size="100" #helpText></textarea>
+              size="100" #helpText formControlName="helpText"
+              [class.is-invalid]="userForm.get('helpText').invalid && userForm.get('helpText').touched"></textarea>
+              <section *ngIf="userForm.get('helpText').invalid && userForm.get('helpText').touched">
+                <small class="text-danger" *ngIf="userForm.get('helpText').errors?.required">HelpText is Required</small>
+              </section>
           </div>
 
           <div class="form-group">
              <label for="lookbackTimeForLog" class="font-weight-bold">Look Back Time For Log<span>*</span></label>
-             <input type="number" class="form-control" #lookbackTimeForLog>
+             <input type="number" class="form-control" #lookbackTimeForLog formControlName="lookbackTimeForLog">
           </div>
 
           <div class="form-group">
             <label for="maxresponses" class="font-weight-bold">Number Of Responses in Search</label>
             <input type="number" name="maxresponses" class="form-control" required
-              placeholder="Enter total response" #maxResponsesInSearch>
-          </div>
+              placeholder="Enter total response" #maxResponsesInSearch formControlName="maxResponsesInSearch"
+              [class.is-invalid]="userForm.get('maxResponsesInSearch').invalid && userForm.get('maxResponsesInSearch').touched">
+              <section *ngIf="userForm.get('maxResponsesInSearch').invalid && userForm.get('maxResponsesInSearch').touched">
+                <small class="text-danger" *ngIf="userForm.get('maxResponsesInSearch').errors?.required">Max ResponsesInSearch is Required</small>
+              </section>
+            </div>
 
           <div class="form-group">
-            <button type="button" class="btn btn-sm btn-outline-success mr-3" 
+            <button type="button" class="ml-3 btn btn-sm btn-outline-success mr-3" [disabled]="userForm.invalid"
             (click)="storeData(domainName,domainLabel,knowledgeBaseId,knowledgeBaseEndpointKey,confidenceThreshold,host,primaryEmailContact,
                           secondaryEmailContact,helpText,maxResponsesInSearch)">
               Submit

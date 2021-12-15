@@ -77,12 +77,10 @@ export class ShowdomainlistComponent implements OnInit {
     });
   }
 
-  showForms(){
-    this.showForm = true;
+  showHideForms(){
+    this.showForm = !this.showForm;
   }
-  hideForm(){
-    this.showForm = false;
-  }
+
   toggle(val:string){
       this.setsetting = val;
   }

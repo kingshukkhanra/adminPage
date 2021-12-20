@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { createDomainModel } from 'src/app/_core/_models/create-domain-model.model';
 import { Router } from '@angular/router';
 import { Options } from '@angular-slider/ngx-slider';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-showdomainlist',
   templateUrl: './showdomainlist.component.html',
@@ -64,16 +65,16 @@ export class ShowdomainlistComponent implements OnInit {
 
   bindData(){
     this.userForm = new FormGroup({
-      domainName : new FormControl('Web',[Validators.required]),
-      domainLabel : new FormControl('Web Development'),
-      knowledgebaseId : new FormControl('knowledgeBaseId10'),
-      knowledgeBaseEndpointKey : new FormControl('knowLedgeBaseEndpointKey10'),
-      host : new FormControl('host12345'),
-      primaryEmailContact : new FormControl('kingshukkhanra22@gmail.com'),
-      secondaryEmailContact : new FormControl('kingshukkhanra22@gmail.com'),
-      helpText : new FormControl("please Aknowledge Me"),
-      maxResponsesInSearch : new FormControl(1),
-      lookbackTimeForLog : new FormControl(6)
+      domainName : new FormControl('',[Validators.required]),
+      domainLabel : new FormControl('',[Validators.required]),
+      knowledgebaseId : new FormControl('',[Validators.required]),
+      knowledgeBaseEndpointKey : new FormControl('',[Validators.required]),
+      host : new FormControl('',[Validators.required]),
+      primaryEmailContact : new FormControl('',[Validators.required]),
+      secondaryEmailContact : new FormControl('',[Validators.required]),
+      helpText : new FormControl("",[Validators.required]),
+      maxResponsesInSearch : new FormControl([Validators.required]),
+      lookbackTimeForLog : new FormControl([Validators.required])
     });
   }
 
@@ -86,7 +87,7 @@ export class ShowdomainlistComponent implements OnInit {
   }
 
   storeData(domainName,domainLabel,knowledgeBaseId,knowledgeBaseEndpointKey,confidenceThreshold,host,primaryEmailContact,
-    secondaryEmailContact,helpText,maxResponsesInSearch){
+    secondaryEmailContact,helpText,maxResponsesInSearch,lookbackTimeForLog){
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.showForm = false;
       let domainDetailsObj = {
@@ -99,8 +100,16 @@ export class ShowdomainlistComponent implements OnInit {
         "primaryEmailContact":primaryEmailContact.value,
         "secondaryEmailContact":secondaryEmailContact.value,
         "helpText":helpText.value,
+        "lookbackTimeForLog":lookbackTimeForLog.value,
         "maxResponsesInSearch":maxResponsesInSearch.value
       }
+      this.adminSvc.updateSelectedDomainDetails(domainName,domainDetailsObj).subscribe(data=>{
+        console.log(data);
+      });
+      Swal.fire({
+        text:'Sucessfully Updated',
+        icon:'success'
+      });
 
     }
 

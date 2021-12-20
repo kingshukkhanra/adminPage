@@ -61,7 +61,7 @@ export class ShowDetailsComponent implements OnInit {
         knowledgeBaseEndpointKey : new FormControl(this.domainDetails[0].knowledgeBaseEndpointKey,Validators.required),
         host : new FormControl(this.domainDetails[0].host,Validators.required),
         primaryEmailContact : new FormControl(this.domainDetails[0].primaryEmailContact,Validators.required),
-        secondaryEmailContact : new FormControl(this.domainDetails[0].secondaryEmailContact),
+        secondaryEmailContact : new FormControl(this.domainDetails[0].secondaryEmailContact,Validators.required),
         helpText : new FormControl(this.domainDetails[0].helpText,Validators.required),
         maxResponsesInSearch : new FormControl(this.domainDetails[0].maxResponsesInSearch,Validators.required),
         lookbackTimeForLog : new FormControl(this.domainDetails[0].lookbackTimeForLog,Validators.required)

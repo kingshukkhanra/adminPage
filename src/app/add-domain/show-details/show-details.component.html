@@ -91,7 +91,12 @@
       <div class="form-group">
         <label for="scontract" class="font-weight-bold">Secondary Email Contact</label>
         <input type="text" name="scontract" class="form-control" 
-          placeholder="Enter Secondary Contract" #secondaryEmailContact formControlName="secondaryEmailContact">
+          placeholder="Enter Secondary Contract" #secondaryEmailContact formControlName="secondaryEmailContact"
+          [class.is-invalid]="userForm.get('secondaryEmailContact').invalid && userForm.get('secondaryEmailContact').touched">
+
+          <section *ngIf="userForm.get('secondaryEmailContact').invalid && userForm.get('secondaryEmailContact').touched">
+            <small class="text-danger" *ngIf="userForm.get('secondaryEmailContact').errors?.required">Secondary Email Contact is Required</small>
+          </section>
       </div>
 
       <div class="form-group">
